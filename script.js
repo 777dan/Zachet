@@ -7,25 +7,26 @@ function Machine() {
 
 Machine.prototype.run = function () {
     this.state = "started";
-    document.write("Hачинаю работать...");
-    document.write(`Время приготовления - ${this.time} `);
-    this.interval = setInterval(function () { document.write(" | ") }.bind(this), 1000);
+    document.getElementById("n1").innerHTML = "Hачинаю работать...";
+    document.getElementById("n2").innerHTML = `Время приготовления - ${this.time} `;
+    this.interval = setInterval(function () { document.getElementById("n3").innerHTML = " | " }.bind(this), 1000);
     this.timer = setTimeout(this.onReady.bind(this), this.time);
-    document.write(this.state);
+    document.getElementById("n7").innerHTML = this.state;
 };
 
 Machine.prototype.onReady = function () {
     clearInterval(this.interval);
     clearTimeout(this.timer);
     this.state = "stopped";
-    document.write(`Готово! ${this.state}`);
+    // (`Готово! ${this.state}`).innerHTML;
+    document.getElementById("n4").innerHTML = `Готово! ${this.state}`;
 };
 
 Machine.prototype.stop = function () {
     clearInterval(this.interval);
     clearTimeout(this.timer);
     this.state = "stopped";
-    document.write(`Принудительное выключение ${this.state}`);
+    document.getElementById("n5").innerHTML = `Принудительное выключение ${this.state}`;
 }
 
 // let machine = new Machine();
@@ -69,7 +70,7 @@ document.getElementById("m1").onclick = function () {
                 alert("Такого напитка нет!");
                 stop();
         }
-        document.write(`приготовление: ${this.drink}`);
+        document.getElementById("n6").innerHTML = `приготовление: ${this.drink}`;
         Machine.prototype.run.apply(this);
 
     };
@@ -107,7 +108,7 @@ document.getElementById("m2").onclick = function () {
                 alert("Такого блюда нет!");
                 stop();
         }
-        document.write(`приготовление: ${this.food}`);
+        document.getElementById("n6").innerHTML = `приготовление: ${this.food}`;
         Machine.prototype.run.apply(this);
     }
 
