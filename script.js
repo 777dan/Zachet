@@ -9,7 +9,7 @@ Machine.prototype.run = function () {
     this.state = "started";
     document.getElementById("n1").innerHTML = "Hачинаю работать...";
     document.getElementById("n2").innerHTML = `Время приготовления - ${this.time} `;
-    this.interval = setInterval(function () { document.getElementById("n3").innerHTML = " | " }.bind(this), 1000);
+    this.interval = setInterval(function () { document.getElementById("n3").innerHTML += " | " }.bind(this), 1000);
     this.timer = setTimeout(this.onReady.bind(this), this.time);
     document.getElementById("n7").innerHTML = this.state;
 };
@@ -29,14 +29,6 @@ Machine.prototype.stop = function () {
     document.getElementById("n5").innerHTML = `Принудительное выключение ${this.state}`;
 }
 
-// let machine = new Machine();
-
-// machine.run();
-// let a = document.getElementById("m1");
-// let b = document.getElementById("m2");
-
-// if (document.getElementById("m1").onclick) {
-
 function CoffeeMachine() {
     this.drink = "вода";
     Machine.apply(this);
@@ -49,16 +41,6 @@ document.getElementById("m1").onclick = function () {
 
     CoffeeMachine.prototype.run = function (drink = "вода") {
         this.drink = drink;
-        // if (this.drink == "латте") {
-        //     this.time = 5000;
-        // }
-        // if (this.drink == "эспрессо") {
-        //     this.time = 3000;
-        // }
-        // else {
-        //     alert("Такого напитка нет!");
-        //     return;
-        // }
         switch (this.drink) {
             case "латте":
                 this.time = 5000;
